@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
+import joblib
 
 def load_data(file_path="lego_injection_molding_data.csv"):
     df = pd.read_csv(file_path)
@@ -24,6 +25,13 @@ def train_model(data_path="lego_injection_molding_data.csv"):
 
     return model, mse
 
+def save_model(model, file_name="trained_model.pkl"):
+    joblib.dump(model, file_name)
+    print(f"Model saved to {file_name}")
+
 if __name__ == "__main__":
     model, mse = train_model()
     print(f"Model trained. Mean Squared Error: {mse}")
+    
+    # Save the trained model
+    save_model(model)
