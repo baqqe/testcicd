@@ -30,3 +30,15 @@ jobs:
 
     - name: Run tests
       run: python -m pytest test_model.py
+
+    - name: Save trained model
+      run: |
+        python ml_model.py
+        mkdir -p artifacts
+        mv trained_model.pkl artifacts/
+    
+    - name: Upload model artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: trained-model
+        path: artifacts/trained_model.pkl
