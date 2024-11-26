@@ -33,7 +33,7 @@ jobs:
 
     - name: Save trained model
       run: |
-        python ml_model.py
+        python model.py
         mkdir -p artifacts
         mv trained_model.pkl artifacts/
     
